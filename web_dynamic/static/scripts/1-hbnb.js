@@ -1,14 +1,15 @@
 // script that listens for changes on each INPUT checkbox tag
-$(document).ready(function () {
+$(function () {
+  let amenList = [];
   $('[type=checkbox]').change(function (e) {
-    let data_name = $(e.target).attr("data-name")
-    let amen_list = [];
-    if ($(e.target).is(":checked")) {
-      amen_list.push(data_name);
+    const dataName = $(e.target).attr('data-name');
+    if ($(e.target).is(':checked')) {
+      amenList.push(dataName);
+    } else {
+      amenList = amenList.filter((item) => item !== dataName);
     }
-    let filtered_list = amen_list.filter((item) => {$(e.target).is(":checked")});
-    $('DIV.amenities H4').append(filtered_list);
-  })
+    $('DIV.amenities H4').html(amenList.join(', '));
+  });
 });
 
 /*
