@@ -11,7 +11,7 @@ $(function () {
     }
     $('DIV.amenities H4').html(amenList.map(item => item.dataName).join(', '));
   });
-
+  // lights up circle if access to backend is available
   $.getJSON(
     'http://0.0.0.0:5001/api/v1/status/',
     function (data) {
@@ -21,7 +21,7 @@ $(function () {
         $('DIV#api_status').removeClass('available');
       }
     });
-
+  // populates all places on load
   $.ajax({
     url: 'http://0.0.0.0:5001/api/v1/places_search/',
     type: 'POST',
@@ -48,7 +48,7 @@ $(function () {
   function pluralize (num, name) {
     if (num === 1) { return `${num} ${name}`; } else { return `${num} ${name}s`; }
   }
-
+  // empties places and then adds back ones that match the filters
   $('[type=button]').click(function () {
     $('.places').empty();
     $.ajax({
