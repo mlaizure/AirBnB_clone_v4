@@ -174,6 +174,7 @@ def places_search():
     places = []
     for p in list_places:
         d = p.to_dict()
+#        print([ amenity.name for amenity in d.get('amenities') ])
         d.pop('amenities', None)
         places.append(d)
 
